@@ -1,0 +1,377 @@
+/* Reset og border-box á allt */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+/* Leturgerðir */
+
+@font-face {
+  font-family: "Lora";
+  font-style: normal;
+  font-display: swap;
+  src: url(./fonts/Lora-VariableFont_wght.ttf) format("woff");
+}
+
+@font-face {
+  font-family: "Noto Sans Display";
+  font-style: normal;
+  font-display: swap;
+  src: url(./fonts/NotoSansDisplay-VariableFont.ttf) format("woff");
+}
+
+/* Stillingar */
+
+:root {
+  /* Grunn bilið okkar er 1rem == 16px */
+  --font-base-body-px: 16px;
+  --spacing: 1rem;
+
+  /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+  --vertical-space: calc(var(--gutter));
+
+  /* Hámarksbreidd á efni */
+  --max-width: 1400px;
+  --width-offset: calc(100% - (2 * var(--offset)));
+
+  /* Border breiddir */
+  --border-small: 1px;
+  --border-large: 8px;
+  --border-radius: 6px;
+
+  /* Litir */
+  --color-gold: #ffe7ae;
+  --color-gold-light: #fff1cf;
+  --color-dark: #2f0505;
+  --color-light: #fff9ee;
+
+  /* Grid stillingar */
+  --columns: 12;
+  --gutter: 30px;
+  --offset: 20px;
+
+  /* Letur stillingar */
+  --font-base-size: 1rem;
+  --font-family-base: "Noto Sans Display", Helvetica, Arial, sans-serif;
+  --font-family-heading: "Lora", Georgia, serif;
+
+  /* Transitions */
+  --transition-time-short: 300ms;
+  --transition-time-long: 600ms;
+  --transition-timing-function: ease-in-out;
+}
+
+/* Almennt */
+
+html,
+input,
+select,
+button {
+  font-size: var(--font-base-body-px);
+  font-family: var(--font-family-base);
+}
+
+h1,
+h2,
+h3 {
+  /* Setjum almennt bil á eftir fyrirsögnum */
+  margin-bottom: var(--spacing);
+
+  font-family: var(--font-family-heading);
+}
+
+a {
+  color: inherit;
+  background-color: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/** Hjálpar class sem felur sjónrænt en skjálesarar lesa **/
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Takki */
+
+.button {
+  background-color: var(--color-dark);
+  color: var(--color-gold-light);
+  border: var(--border-small) solid var(--color-dark);
+  text-align: center;
+  text-decoration: none;
+  transition: var(--transition-time-short) var(--transition-timing-function);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing) * 0.5);
+}
+
+.button:hover {
+  background-color: var(--color-gold);
+  color: var(--color-dark);
+  border: var(--border-small) solid var(--color-dark);
+}
+
+/* Kvikun */
+
+html {
+  animation: fade-in var(--transition-time-long);
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/*animation: var(--transition-time-long) var(--transition-timing-function) fade-in;*/
+
+/* Layout */
+
+.wrapper {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--vertical-space);
+  min-height: 100vh;
+}
+
+/** Útfæra layout með grid **/
+
+/** Haus **/
+
+.header {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--vertical-space);
+  width: var(--width-offset);
+  margin-right: auto;
+  margin-left: auto;
+  padding-top: var(--spacing);
+  border-bottom: var(--border-large) solid var(--color-gold);
+
+  background-color: var(--color-dark);
+  color: var(--color-gold-light);
+}
+
+.header header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/** Valmynd **/
+
+.navigation {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+
+  margin-right: auto;
+  margin-left: auto;
+
+  padding: var(--spacing);
+  width: 100%;
+
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+.navigation ul {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing);
+  width: 100%;
+
+  list-style: none;
+}
+
+/** Meginmál **/
+
+.main {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--vertical-space);
+  width: var(--width-offset);
+  max-width: var(--max-width);
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/** Fótur **/
+
+.footer {
+  padding: var(--spacing);
+  border-top: var(--border-large) solid var(--color-gold);
+
+  background-color: var(--color-dark);
+  color: var(--color-gold-light);
+
+  text-align: center;
+}
+
+.footer .content {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 500px) {
+  .footer .content .box {
+    grid-column: span var(--columns);
+  }
+}
+
+@media (min-width: 500px) {
+  .footer .content .box {
+    grid-column: span calc(var(--columns) / 2);
+  }
+}
+
+.footer ul {
+  list-style: none;
+}
+
+/* Box! */
+
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-template-rows: auto;
+  gap: var(--gutter);
+}
+
+@media (max-width: 500px) {
+  .boxes .box {
+    grid-column: span var(--columns);
+  }
+}
+@media (max-width: 1000px) and (min-width: 500px) {
+  .boxes .box {
+    grid-column: span calc(var(--columns) / 2);
+  }
+}
+@media (min-width: 1000px) {
+  .boxes .box {
+    grid-column: span calc(var(--columns) / 3);
+  }
+}
+
+.boxes .box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing);
+  padding: calc(var(--spacing) * 0.5);
+  /* width: calc(50% - var(--spacing) * 0.5); */
+  min-height: 100px;
+  width: 100%;
+  color: var(--color-dark);
+  background-color: var(--color-gold-light);
+  border-radius: 5px;
+}
+
+.boxes .box .title {
+  margin-bottom: calc(var(--spacing) * 0.5);
+  border-bottom: var(--border-small) solid var(--color-dark);
+}
+
+.boxes .box .content {
+  flex: 1;
+}
+
+.boxes .box img {
+  max-height: 400px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.boxes .box .link {
+  margin-top: calc(var(--spacing) * 0.5);
+
+  font-weight: bold;
+}
+
+/** Útfæra box með grid **/
+
+/* Opnunartími */
+
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: var(--spacing);
+}
+
+/* Matseðill */
+
+table {
+  border-spacing: 0;
+}
+
+table th,
+table td {
+  padding: calc(var(--spacing) * 0.5);
+  text-align: left;
+}
+
+table tbody tr:nth-child(2n + 1) {
+  color: var(--color-dark);
+  background-color: var(--color-gold);
+}
+
+/* Pöntunarform */
+
+fieldset {
+  border: var(--border-small) solid var(--color-dark);
+}
+
+fieldset legend {
+  font-weight: bold;
+}
+
+fieldset div label {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset input,
+fieldset select,
+fieldset textarea {
+  padding: calc(var(--spacing) * 0.5);
+}
+
+fieldset .checkbox label {
+  flex-direction: row;
+  gap: calc(var(--spacing) * 0.5);
+}
+
+form button {
+  padding: calc(var(--spacing) * 0.25);
+  border-radius: var(--border-radius);
+}
