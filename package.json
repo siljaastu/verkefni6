@@ -9,17 +9,16 @@
     "sass": "sass styles.scss styles.css -w",
     "sass-watch": "sass --watch *.scss styles.css",
     "dev": "concurrently npm:sass-watch npm:browser-sync",
-    "lint": "stylelint styles.scss --syntax scss"
+    "lint": "stylelint styles.scss ./**/*.scss"
   },
   "author": "Silja Ástudóttir",
   "license": "ISC",
   "devDependencies": {
     "browser-sync": "^2.29.3",
     "concurrently": "^8.2.2",
+    "sass": "^1.69.4",
     "stylelint": "^15.11.0",
-    "stylelint-config-primer": "^11.1.1"
-  },
-  "dependencies": {
-    "sass": "^1.69.4"
+    "stylelint-config-sass-guidelines": "^10.0.0",
+    "postcss-scss": "^4.0.9"
   }
 }

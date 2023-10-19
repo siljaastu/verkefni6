@@ -1,4 +1,63 @@
 @charset "UTF-8";
+/* Reset og border-box á allt */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* Stillingar */
+:root {
+  /* Grunn bilið okkar er 1rem == 16px */
+  --font-base-body-px: 16px;
+  --spacing: 1rem;
+  /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
+  --vertical-space: calc(var(--gutter));
+  /* Hámarksbreidd á efni */
+  --max-width: 1400px;
+  --width-offset: calc(100% - (2 * var(--offset)));
+  /* Border breiddir */
+  --border-small: 1px;
+  --border-large: 8px;
+  --border-radius: 6px;
+  /* Litir */
+  --color-gold: #ffe7ae;
+  --color-gold-light: #fff1cf;
+  --color-dark: #2f0505;
+  --color-light: #fff9ee;
+  /* Grid stillingar */
+  --columns: 12;
+  --gutter: 30px;
+  --offset: 20px;
+  /* Letur stillingar */
+  --font-base-size: 1rem;
+  --font-family-base: "Noto Sans Display", Helvetica, Arial, sans-serif;
+  --font-family-heading: "Lora", Georgia, serif;
+  /* Transitions */
+  --transition-time-short: 300ms;
+  --transition-time-long: 600ms;
+  --transition-timing-function: ease-in-out;
+}
+
+/* Layout */
+.wrapper {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  /* grid items eru miðjuð */
+  justify-items: center;
+  gap: var(--vertical-space);
+}
+
 /* Almennt */
 html,
 input,
@@ -36,25 +95,6 @@ img {
   width: 1px;
 }
 
-/* Takki */
-.button {
-  display: inline-block;
-  border: 1px solid var(--color-dark);
-  border-radius: var(--border-radius);
-  padding: calc(var(--spacing) / 2) calc(var(--spacing));
-  font-family: var(--font-family-base);
-  text-decoration: none;
-  text-align: center;
-  color: var(--color-light);
-  background-color: var(--color-dark);
-  transition: background-color var(--transition-time-short) var(--transition-timing-function), color var(--transition-time-short);
-}
-
-.button:hover {
-  color: var(--color-dark);
-  background-color: var(--color-gold);
-}
-
 /* Fade in animation */
 @keyframes fade-in {
   from {
@@ -64,19 +104,18 @@ img {
     opacity: 1;
   }
 }
-.header,
 .main {
-  animation: var(--transition-time-long) var(--transition-timing-function) fade-in;
-}
-
-/* Layout */
-.wrapper {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: 100%;
-  /* grid items eru miðjuð */
-  justify-items: center;
   gap: var(--vertical-space);
+  width: var(--width-offset);
+  max-width: var(--max-width);
+}
+
+.header,
+.main {
+  animation: var(--transition-time-long) var(--transition-timing-function) fade-in;
 }
 
 /* Box! */
@@ -137,66 +176,6 @@ img {
     max-height: 350px;
   }
 }
-/* Opnunartími */
-dt {
-  font-weight: bold;
-}
-
-dd {
-  margin-bottom: var(--spacing);
-}
-
-/* Matseðill */
-table {
-  border-spacing: 0;
-}
-
-table th,
-table td {
-  padding: calc(var(--spacing) * 0.5);
-  text-align: left;
-}
-
-table tbody tr:nth-child(2n+1) {
-  color: var(--color-dark);
-  background-color: var(--color-gold);
-}
-
-/* Pöntunarform */
-fieldset {
-  border: var(--border-small) solid var(--color-dark);
-}
-
-fieldset legend {
-  font-weight: bold;
-}
-
-fieldset div label {
-  display: flex;
-  flex-direction: column;
-}
-
-fieldset input,
-fieldset select,
-fieldset textarea {
-  padding: calc(var(--spacing) * 0.5);
-  width: 100%;
-}
-
-fieldset input[type=checkbox] {
-  width: auto;
-}
-
-fieldset .checkbox label {
-  flex-direction: row;
-  gap: calc(var(--spacing) * 0.5);
-}
-
-form button {
-  padding: calc(var(--spacing) * 0.25);
-  border-radius: var(--border-radius);
-}
-
 .footer {
   padding: var(--spacing);
   border-top: var(--border-large) solid var(--color-gold);
@@ -204,14 +183,12 @@ form button {
   background-color: var(--color-dark);
   color: var(--color-gold-light);
 }
-
 .footer .content {
   display: grid;
   gap: var(--vertical-space);
   margin: 0 auto;
   text-align: center;
 }
-
 @media (min-width: 500px) {
   .footer .content {
     grid-template-columns: repeat(var(--columns), 1fr);
@@ -227,6 +204,15 @@ form button {
 }
 .footer ul {
   list-style: none;
+}
+
+/* Opnunartími */
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: var(--spacing);
 }
 
 .header {
@@ -273,61 +259,84 @@ form button {
   font-family: "Lora";
   font-style: normal;
   font-display: swap;
-  src: url(./fonts/Lora-VariableFont_wght.ttf) format("woff");
+  src: url("./fonts/Lora-VariableFont_wght.ttf") format("woff");
 }
 @font-face {
   font-family: "Noto Sans Display";
   font-style: normal;
   font-display: swap;
-  src: url(./fonts/NotoSansDisplay-VariableFont.ttf) format("woff");
+  src: url("./fonts/NotoSansDisplay-VariableFont.ttf") format("woff");
 }
-/* Reset og border-box á allt */
-* {
-  margin: 0;
-  padding: 0;
-}
-
-html {
-  box-sizing: border-box;
+/* Pöntunarform */
+fieldset {
+  border: var(--border-small) solid var(--color-dark);
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+fieldset legend {
+  font-weight: bold;
 }
 
-/* Stillingar */
-:root {
-  /* Grunn bilið okkar er 1rem == 16px */
-  --font-base-body-px: 16px;
-  --spacing: 1rem;
-  /* Bil á milli „stærri“ eininga (header, efnisbox, footer) */
-  --vertical-space: calc(var(--gutter));
-  /* Hámarksbreidd á efni */
-  --max-width: 1400px;
-  --width-offset: calc(100% - (2 * var(--offset)));
-  /* Border breiddir */
-  --border-small: 1px;
-  --border-large: 8px;
-  --border-radius: 6px;
-  /* Litir */
-  --color-gold: #ffe7ae;
-  --color-gold-light: #fff1cf;
-  --color-dark: #2f0505;
-  --color-light: #fff9ee;
-  /* Grid stillingar */
-  --columns: 12;
-  --gutter: 30px;
-  --offset: 20px;
-  /* Letur stillingar */
-  --font-base-size: 1rem;
-  --font-family-base: "Noto Sans Display", Helvetica, Arial, sans-serif;
-  --font-family-heading: "Lora", Georgia, serif;
-  /* Transitions */
-  --transition-time-short: 300ms;
-  --transition-time-long: 600ms;
-  --transition-timing-function: ease-in-out;
+fieldset div label {
+  display: flex;
+  flex-direction: column;
+}
+
+fieldset input,
+fieldset select,
+fieldset textarea {
+  padding: calc(var(--spacing) * 0.5);
+  width: 100%;
+}
+
+/* stylelint-disable selector-no-qualifying-type */
+fieldset input[type=checkbox] {
+  width: auto;
+}
+
+/* stylelint-enable selector-no-qualifying-type */
+fieldset .checkbox label {
+  flex-direction: row;
+  gap: calc(var(--spacing) * 0.5);
+}
+
+form button {
+  padding: calc(var(--spacing) * 0.25);
+  border-radius: var(--border-radius);
+}
+
+/* Takki */
+.button {
+  display: inline-block;
+  border: 1px solid var(--color-dark);
+  border-radius: var(--border-radius);
+  padding: calc(var(--spacing) / 2) calc(var(--spacing));
+  font-family: var(--font-family-base);
+  text-decoration: none;
+  text-align: center;
+  color: var(--color-light);
+  background-color: var(--color-dark);
+  transition: background-color var(--transition-time-short) var(--transition-timing-function), color var(--transition-time-short);
+}
+
+.button:hover {
+  color: var(--color-dark);
+  background-color: var(--color-gold);
+}
+
+/* Matseðill */
+table {
+  border-spacing: 0;
+}
+
+table th,
+table td {
+  padding: calc(var(--spacing) * 0.5);
+  text-align: left;
+}
+
+table tbody tr:nth-child(2n+1) {
+  color: var(--color-dark);
+  background-color: var(--color-gold);
 }
 
 /*# sourceMappingURL=styles.css.map */

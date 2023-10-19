@@ -1,0 +1,15 @@
+.main {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 100%;
+  gap: var(--vertical-space);
+
+  width: var(--width-offset);
+  max-width: var(--max-width);
+}
+
+.header,
+.main {
+  animation: var(--transition-time-long) var(--transition-timing-function)
+    fade-in;
+}

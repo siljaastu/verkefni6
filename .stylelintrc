@@ -1,4 +1,4 @@
-	
 {
-  "extends": "stylelint-config-primer"
+  "extends": ["stylelint-config-sass-guidelines"],
+  "rules": {}
 }

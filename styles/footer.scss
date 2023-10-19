@@ -5,34 +5,43 @@
 
   background-color: var(--color-dark);
   color: var(--color-gold-light);
-}
 
-.footer .content {
-  display: grid;
-  gap: var(--vertical-space);
+  .content {
+    display: grid;
+    gap: var(--vertical-space);
 
-  margin: 0 auto;
+    margin: 0 auto;
 
-  text-align: center;
-}
-
-@media (min-width: 500px) {
-  .footer .content {
-    grid-template-columns: repeat(var(--columns), 1fr);
-    grid-template-rows: auto;
-
-    max-width: var(--max-width);
+    text-align: center;
   }
 
-  .footer section {
-    grid-column-end: span 4;
+  @media (min-width: 500px) {
+    .content {
+      grid-template-columns: repeat(var(--columns), 1fr);
+      grid-template-rows: auto;
+
+      max-width: var(--max-width);
+    }
+
+    section {
+      grid-column-end: span 4;
+    }
+
+    section:first-child {
+      grid-column-start: 3;
+    }
   }
 
-  .footer section:first-child {
-    grid-column-start: 3;
+  ul {
+    list-style: none;
   }
 }
+/* Opnunartími */
 
-.footer ul {
-  list-style: none;
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-bottom: var(--spacing);
 }
